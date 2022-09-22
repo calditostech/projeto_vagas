@@ -1,8 +1,13 @@
 <template>
     <div>
-        <h1>Conteúdo</h1>
-        <home></home>
-        <publicar-vaga></publicar-vaga>
+        <h1>{{titulo}}</h1>
+        <button @click="atualizarComponente()">Atualizar</button>
+        <button @click="conteudo = 'home'">Home</button>
+        <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button>
+        <!-- renderizar de modo dinamico os componentes home e publicar vaga-->
+        <!--<home></home>-->
+        <!--<publicar-vaga></publicar-vaga>-->
+        <component :is="conteudo" />
     </div>
 </template>
 
@@ -14,7 +19,39 @@ export default {
     components: {
         Home,
         PublicarVaga
-    }
+    },
+    data: () => ({
+        teste: 'O componente foi criado',
+        titulo: 'O titulo esta criado',
+        conteudo: 'home'
+    }),
+    methods: {
+        atualizarComponente() {
+            this.titulo += '*';
+        }
+    },
+    
+    beforeCreate() {
+        console.log('Antes de criar', this.teste)
+    },
+    created() {
+        console.log('Criado', this.teste)
+    },
+    beforeMount() {
+        console.log('Antes de Criado')
+    },
+    mounted() {
+        console.log('Montado')
+    },
+    beforeUpdate() {
+        console.log('Antes de atualizar')
+    },
+    updated() {
+        console.log('Componente atualizado', this.titulo)
+    },
+    unmounted() {
+        console.log('Desmontado')
+    },
 }
 </script>
 
