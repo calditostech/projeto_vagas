@@ -29,29 +29,7 @@ export default {
         atualizarComponente() {
             this.titulo += '*';
         }
-    },
-    
-    beforeCreate() {
-        console.log('Antes de criar', this.teste)
-    },
-    created() {
-        console.log('Criado', this.teste)
-    },
-    beforeMount() {
-        console.log('Antes de Criado')
-    },
-    mounted() {
-        console.log('Montado')
-    },
-    beforeUpdate() {
-        console.log('Antes de atualizar')
-    },
-    updated() {
-        console.log('Componente atualizado', this.titulo)
-    },
-    unmounted() {
-        console.log('Desmontado')
-    },
+    }
 }
 </script>
 
