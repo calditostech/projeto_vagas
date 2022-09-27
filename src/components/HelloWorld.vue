@@ -1,14 +1,11 @@
 <template>
   <div>
-    <h2>Single File Template</h2>
+    <p>Single File Component</p>
+    <p>Extensão .vue</p>
+    <p>Pascal Case: PascalCaseComponent.vue</p>
   </div>
 </template>
 
-<script>
+<script></script>
 
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style></style>

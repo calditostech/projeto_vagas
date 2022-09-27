@@ -14,5 +14,5 @@ export default {
             return `h-100 p-5 rounded-3 border ${this.bg} ${this.color}`
         }
     }
-}    
+}
 </script>

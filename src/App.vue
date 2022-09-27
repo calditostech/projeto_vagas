@@ -1,38 +1,28 @@
 <template>
-    <div>
-      <h1>Componenente App</h1>
-      <button @click="desmontarComponente()">Desmontar o componente conteudo</button>
-      <TopoPadrao @nomeDoEventoQueSeraCapturadoNoComponentePai="acao()"/>
-      <Conteudo v-if="visibilidade"></conteudo>
-    </div>
+  <div>
+    <vagas-favoritas></vagas-favoritas>
+    <topo-padrao @navegar="componente = $event" />
+    <conteudo v-if="visibilidade" :conteudo="componente"></conteudo>
+  </div>
 </template>
 
 <script>
-import Conteudo from '@/components/layouts/Conteudo.vue';
-import TopoPadrao from '@/components/layouts/TopoPadrao.vue';
+import Conteudo from '@/components/layouts/Conteudo.vue'
+import VagasFavoritas from '@/components/comuns/VagasFavoritas.vue'
+import TopoPadrao from '@/components/layouts/TopoPadrao.vue'
 
 export default {
   name: 'App',
   data: () => ({
-    visibilidade: true
+    visibilidade: true,
+    componente: 'Home'
   }),
   components: {
     Conteudo,
-    TopoPadrao
-  },
-  methods: {
-    desmontarComponente() {
-      this.visibilidade = false
-    },
-    acao() {
-      console.log('Chegamos até o componente PAI')
-    }
+    TopoPadrao,
+    VagasFavoritas
   }
 }
 </script>
 
-<style>
-h1 {
-  color: red;
-}
-</style>
+<style scoped></style>
