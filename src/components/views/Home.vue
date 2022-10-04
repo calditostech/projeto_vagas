@@ -6,12 +6,8 @@
       </div>
     </div>
 
-    <div class="row mt-5" v-for="(vaga, index) in vagas" :key="index">
-      <div class="col">
-        <vaga v-bind="vaga" />
-      </div>
-    </div>
-
+    <lista-vagas :vagas="vagas" />
+    
     <div class="row mt-5">
       <div class="col-4">
         <indicador titulo="Vagas abertas" indicador="100" bg="bg-dark" color="text-white"></indicador>
@@ -30,15 +26,15 @@
 
 <script>
 import Indicador from '@/components/comuns/Indicador.vue'
+import ListaVagas from '@/components/comuns/ListaVagas.vue'
 import PesquisarVaga from '@/components/comuns/PesquisarVaga.vue'
-import Vaga from '@/components/comuns/Vaga.vue'
 
 export default {
   name: 'Home',
   components: {
     PesquisarVaga,
     Indicador,
-    Vaga
+    ListaVagas
   },
   data: () => ({
     usuariosOnline: 0,
@@ -46,16 +42,22 @@ export default {
   }),
   methods: {
     getUsuariosOnline() {
-      this.usuariosOnline = Math.floor(Math.random() * 101) //entre 0 e 100
+       this.usuariosOnline = Math.floor(Math.random() * 101) //entre 0 e 100
     }
   },
   created() {
     setInterval(this.getUsuariosOnline, 1000) //a cada 1 segundo
   },
-  //mounted() { //
   activated() {
-    this.vagas = JSON.parse(localStorage.getItem('vagas'))
+      this.vagas = JSON.parse(localStorage.getItem('vagas'))
+  },
+  mounted() {
+      this.emitter.on('filtrarVagas', vaga => {
+         const vagas = JSON.parse(localStorage.getItem('vagas'))
+         this.vagas = vagas.filter(reg => reg.titulo.toLowerCase().includes(vaga.titulo.toLowerCase())) // true ou false
+      })
   }
+
 }
 </script>
 
